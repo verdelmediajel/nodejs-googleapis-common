@@ -13,7 +13,12 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import * as coreHttp2 from 'http2';
+let coreHttp2;
+try {
+  coreHttp2 = await import('node:http2');
+} catch (err) {
+  console.error('http2 support is disabled!');
+}
 import {describe, it, before, beforeEach} from 'mocha';
 import {gzipSync} from 'zlib';
 import * as proxyquire from 'proxyquire';
