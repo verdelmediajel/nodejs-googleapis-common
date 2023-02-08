@@ -11,7 +11,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as http2 from 'http2';
+let http2;
+try {
+  http2 = await import('node:http2');
+} catch (err) {
+  console.error('http2 support is disabled!');
+}
 import * as zlib from 'zlib';
 import {URL} from 'url';
 import * as qs from 'qs';
